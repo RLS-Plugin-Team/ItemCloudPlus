@@ -8,6 +8,7 @@ website: http://onebone.me/plugins/?plugin=itemcloud
 commands:
   itemcloud:
     usage: /itemcloud <register | upload | download | list | onbreak | offbreak | count | all> [item]
+    description: ItemCloud
     aliases:
     - itmc
     permission: itemcloud.command.register;itemcloud.command.upload;itemcloud.command.download;itemcloud.command.list;itemcloud.command.count
