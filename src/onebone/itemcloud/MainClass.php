@@ -353,3 +353,29 @@ class MainClass extends PluginBase implements Listener{
 		$this->clouds = [];
 	}
 }
+
+class sendItem extends Task{
+
+	function __construct(PluginBase $owner, $player, $item, $block, $event){
+		$this->owner = $owner;
+		$this->player = $player;
+		$this->item = $item;
+		$this->block = $block;
+		$this->event = $event;
+	}
+
+	function onRun(int $currentTick){
+		if(!$this->event->isCancelled()){
+			if($this->player->getInventory()->canAddItem($this->item)){
+				$this->player->getInventory()->addItem($this->item);
+			}else{
+				$level = $this->player->getLevel();
+				$x = $this->block->x;
+				$y = $this->block->y;
+				$z = $this->block->z;
+				$pos = new Vector3($x, $y, $z);
+				$level->dropItem($pos, $this->item);
+			}
+		}
+	}
+}
