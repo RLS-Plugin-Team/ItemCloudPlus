@@ -307,11 +307,12 @@ class MainClass extends PluginBase implements Listener{
 	
 	public function onBreak(BlockBreakEvent $event){
 		$player = $event->getPlayer();
+		$block = $event->getBlock();
 		$name = $player->getName();
 		$drop = $event->getDrops();
-                $level=$player->getLevel();
-                $x = floor($player->getX());
-                $z = floor($player->getZ());
+                $level = $block->getLevel();
+                $x = floor($block->getX());
+                $z = floor($block->getZ());
                 $this->land = EconomyLand::getInstance();
                 $info= $this->land->getowner($x,$z,$level);
                 if($info === false || $name==$info['owner']){
