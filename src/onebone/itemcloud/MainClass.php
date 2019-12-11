@@ -15,6 +15,11 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\Config;
 use onebone\economyland\EconomyLand;
 
+use pocketmine\Server;
+use pocketmine\inventory\PlayerInventory;
+use pocketmine\inventory\Inventory;
+use pocketmine\math\Vector3;
+use pocketmine\scheduler\Task;
 
 class MainClass extends PluginBase implements Listener{
 	/**
@@ -320,6 +325,15 @@ class MainClass extends PluginBase implements Listener{
                                                 foreach($drop as $item){
                                                         $this->clouds[strtolower($name)]->addItemBreak($item->getID(), $item->getDamage(), $item->getCount(), true);
                                                 }
+					}
+				}else{
+					$player = $event->getPlayer();
+					$drop = $event->getDrops();
+					$event->setDrops([]);
+					$level = $player->getLevel()->getFolderName();
+					foreach($drop as $item){
+						#$this->sendItem($player, $item, $event->getBlock(), $event);
+						$this->getScheduler()->scheduleDelayedTask(new sendItem($this, $player, $item, $event->getBlock(), $event), 1);
 					}
 				}
 	                }
