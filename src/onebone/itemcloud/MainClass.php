@@ -202,7 +202,7 @@ class MainClass extends PluginBase implements Listener{
 							break;
 						}
 						
-						if($this->getServer()->getPlayerExact($params[0])->isOnline() == NULL){
+						if($this->getServer()->getPlayerExact($params[0])->isOnline() == false){
 							$sender->sendMessage("[ItemCloud] §c{$params[0]}はオフラインです");
 							break;
 						}
