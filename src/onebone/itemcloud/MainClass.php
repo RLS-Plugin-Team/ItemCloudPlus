@@ -202,14 +202,14 @@ class MainClass extends PluginBase implements Listener{
 							break;
 						}
 						
-						if($this->getServer()->getPlayerExact($params[0]) instanceof Player){
-						}else{
-							$sender->sendMessage("[ItemCloud] §c{$params[0]}はオフラインです");
+						if(!isset($this->clouds[$params[0]])){
+							$sender->sendMessage("[ItemCloud] §c{$params[0]}さんのアカウントが存在しません");
 							break;
 						}
 						
-						if(!isset($this->clouds[$params[0]])){
-							$sender->sendMessage("[ItemCloud] §c{$params[0]}さんのアカウントが存在しません");
+						if($this->getServer()->getPlayerExact($params[0]) instanceof Player){
+						}else{
+							$sender->sendMessage("[ItemCloud] §c{$params[0]}はオフラインです");
 							break;
 						}
 						   
