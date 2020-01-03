@@ -182,7 +182,7 @@ class MainClass extends PluginBase implements Listener{
 						}
 						break;
 					case "give":
-						if(!isset($params[1] || !isset($params[2]) || !isset($params[3])){
+						if(!isset($params[1]) || !isset($params[2]) || !isset($params[3])){
 							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
 							break;
 						}
