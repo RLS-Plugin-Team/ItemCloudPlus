@@ -182,6 +182,11 @@ class MainClass extends PluginBase implements Listener{
 						}
 						break;
 					case "give":
+						if(!isset($params[0])){
+							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
+							break;
+						}
+						
 						if(!isset($params[1])){
 							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
 							break;
@@ -191,39 +196,34 @@ class MainClass extends PluginBase implements Listener{
 							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
 							break;
 						}
-						
-						if(!isset($params[3])){
-							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
-							break;
-						}
 						 
 						if(!isset($this->clouds[$sender->getName()])){
 							$sender->sendMessage("[ItemCloud] §cアカウントを作成してください");
 							break;
 						}
 						   
-						if(!isset($this->clouds[$params[1]])){
-							$sender->sendMessage("[ItemCloud] §c{$params[1]}さんのアカウントが存在しません");
+						if(!isset($this->clouds[$params[0]])){
+							$sender->sendMessage("[ItemCloud] §c{$params[0]}さんのアカウントが存在しません");
 							break;
 						}
 						   
-						if($params[3] < 1){
+						if($params[2] < 1){
 							$sender->sendMessage("[ItemCloud] §c1個以上の個数にしてしてください");
 							break;
 						}
 						   
-						$item = explode(":",$params[2]);
+						$item = explode(":",$params[1]);
 						   
-						if(!$this->clouds[$sender->getName()]->itemExists($item[0], $item[1], $params[3])){
+						if(!$this->clouds[$sender->getName()]->itemExists($item[0], $item[1], $params[2])){
 							$sender->sendMessage("[ItemCloud] §cアイテムが足りません");
 							break;
 						}
 						  
-						$this->clouds[$sender->getName()]->removeItem($item[0], $item[1], $params[3]); //削除
+						$this->clouds[$sender->getName()]->removeItem($item[0], $item[1], $params[2]); //削除
 						   
-						$this->clouds[strtolower($params[1])]->addItem($item[0], $item[1], $params[3], true); //追加
+						$this->clouds[strtolower($params[1])]->addItem($item[0], $item[1], $params[2], true); //追加
 						   
-						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]}を{$params[1]}に与えました");
+						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]}を{$params[0]}に与えました");
 						
 						break;
 						
