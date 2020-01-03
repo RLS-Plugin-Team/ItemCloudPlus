@@ -124,7 +124,7 @@ class MainClass extends PluginBase implements Listener{
 						}
 						$amount = (int) $amount;
 						if($amount < 1){
-							$sender->sendMessage("Wrong amount");
+							$sender->sendMessage("[ItemCloud] §c1個以上の個数をしてしてください");
 							break;
 						}
 						$item = Item::fromString($item);
@@ -162,7 +162,7 @@ class MainClass extends PluginBase implements Listener{
 						}
 						$amount = (int) $amount;
 						if($amount < 1){
-							$sender->sendMessage("Wrong amount");
+							$sender->sendMessage("[ItemCloud] §c1個以上の個数をしてしてください");
 							break;
 						}
 						$item = Item::fromString($item);
@@ -181,6 +181,40 @@ class MainClass extends PluginBase implements Listener{
 							$sender->sendMessage("[ItemCloud] §cインベントリに空きがありません");
 						}
 						break;
+					case "give":
+						if(!isset($params[1] || !isset($params[2]) || !isset($params[3])){
+							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
+							break;
+						}
+						 
+						if(!isset($this->clouds[$sender->getName()]){
+							$sender->sendMessage("[ItemCloud] §cアカウントを作成してください");
+							break;
+						}
+						   
+						if(!isset($this->clouds[$params[1]]){
+							$sender->sendMessage("[ItemCloud] §c{$params[1]}さんのアカウントが存在しません");
+							break;
+						}
+						   
+						if($params[3] < 1){
+							$sender->sendMessage("[ItemCloud] §c1個以上の個数にしてしてください");
+							break;
+						}
+						   
+						$item = explode(":",$params[2]);
+						   
+						if(!$this->clouds[$sender->getName()]->itemExists($item[0], $item[1], $params[3])){
+							$sender->sendMessage("[ItemCloud] §cアイテムが足りません");
+							break;
+						}
+						  
+						$this->clouds[$sender->getName()]->removeItem([$item[0], $item[1], $params[3]); //削除
+						   
+						$this->clouds[strtolower($params[1])]->addItem($item[0], $item[1], $params[3], true); //追加
+						   
+						break;
+						
 					case "list":
 						if(!$sender->hasPermission("itemcloud.command.list")){
 							$sender->sendMessage(TextFormat::RED . "§cコマンドを実行する権限がありません");
