@@ -187,7 +187,7 @@ class MainClass extends PluginBase implements Listener{
 							break;
 						}
 						 
-						if(!isset($this->clouds[$sender->getName()]){
+						if(!isset($this->clouds[$sender->getName()])){
 							$sender->sendMessage("[ItemCloud] §cアカウントを作成してください");
 							break;
 						}
