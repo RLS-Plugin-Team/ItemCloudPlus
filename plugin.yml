@@ -7,7 +7,7 @@ main: onebone\itemcloud\MainClass
 website: http://onebone.me/plugins/?plugin=itemcloud
 commands:
   itemcloud:
-    usage: /itemcloud <register | upload | download | list | onbreak | offbreak | count | all> [item]
+    usage: /itemcloud <register | upload | download | give | list | onbreak | offbreak | count | all> [item]
     description: ItemCloud
     aliases:
     - itmc
