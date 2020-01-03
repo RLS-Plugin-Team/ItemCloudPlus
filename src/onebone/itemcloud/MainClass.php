@@ -192,7 +192,7 @@ class MainClass extends PluginBase implements Listener{
 							break;
 						}
 						   
-						if(!isset($this->clouds[$params[1]]){
+						if(!isset($this->clouds[$params[1]])){
 							$sender->sendMessage("[ItemCloud] §c{$params[1]}さんのアカウントが存在しません");
 							break;
 						}
