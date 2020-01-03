@@ -212,7 +212,7 @@ class MainClass extends PluginBase implements Listener{
 							break;
 						}
 						
-						$item = exlode(":",$params[1]);
+						$item = explode(":",$params[1]);
 						   
 						if(!$this->clouds[$sender->getName()]->itemExists($item[0], $item[1], $params[2])){
 							$sender->sendMessage("[ItemCloud] §cアイテムが足りません");
