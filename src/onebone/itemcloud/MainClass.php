@@ -211,19 +211,19 @@ class MainClass extends PluginBase implements Listener{
 							$sender->sendMessage("[ItemCloud] §c1個以上の個数にしてしてください");
 							break;
 						}
+						
+						$item = Item::fromString($params[1]);
 						   
-						$item = explode(":",$params[1]);
-						   
-						if(!$this->clouds[$sender->getName()]->itemExists($item[0], $item[1], $params[2])){
+						if(!$this->clouds[$sender->getName()]->itemExists($item->getID(), $item->getDamage(), $params[2])){
 							$sender->sendMessage("[ItemCloud] §cアイテムが足りません");
 							break;
 						}
 						  
-						$this->clouds[$sender->getName()]->removeItem($item[0], $item[1], $params[2]); //削除
+						$this->clouds[$sender->getName()]->removeItem($item->getID(), $item->getDamage(), $params[2]); //削除
 						   
-						$this->clouds[strtolower($params[1])]->addItem($item[0], $item[1], $params[2], true); //追加
+						$this->clouds[strtolower($params[1])]->addItem($item->getID, $item->getDamage(), $params[2], true); //追加
 						   
-						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]}を{$params[0]}に与えました");
+						$sender->sendMessage("[ItemCloud] §e{$item->getID}:{$item->getDamage()}を{$params[0]}に与えました");
 						
 						break;
 						
