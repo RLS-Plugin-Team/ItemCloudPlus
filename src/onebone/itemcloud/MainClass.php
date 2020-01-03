@@ -182,7 +182,17 @@ class MainClass extends PluginBase implements Listener{
 						}
 						break;
 					case "give":
-						if(!isset($params[1]) || !isset($params[2]) || !isset($params[3])){
+						if(!isset($params[1])){
+							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
+							break;
+						}
+						
+						if(!isset($params[2])){
+							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
+							break;
+						}
+						
+						if(!isset($params[3])){
 							$sender->sendMessage("Usage: /itemcloud give <name> <item ID[:item damage]> <count>");
 							break;
 						}
@@ -213,6 +223,8 @@ class MainClass extends PluginBase implements Listener{
 						   
 						$this->clouds[strtolower($params[1])]->addItem($item[0], $item[1], $params[3], true); //追加
 						   
+						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]}を{$params[1]}に与えました");
+						
 						break;
 						
 					case "list":
