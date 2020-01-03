@@ -230,6 +230,8 @@ class MainClass extends PluginBase implements Listener{
 						   
 						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]} {$params[2]}個 を{$params[0]}に与えました");
 						
+						$sender->sendMessage("[Itemcloud] §e{$item[0]}:{$item[1]} {$params[2]}個 を{$params[0]}から貰いました");
+						
 						break;
 						
 					case "list":
