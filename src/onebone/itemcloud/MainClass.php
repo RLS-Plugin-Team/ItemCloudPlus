@@ -209,7 +209,7 @@ class MainClass extends PluginBase implements Listener{
 							break;
 						}
 						  
-						$this->clouds[$sender->getName()]->removeItem([$item[0], $item[1], $params[3]); //削除
+						$this->clouds[$sender->getName()]->removeItem($item[0], $item[1], $params[3]); //削除
 						   
 						$this->clouds[strtolower($params[1])]->addItem($item[0], $item[1], $params[3], true); //追加
 						   
