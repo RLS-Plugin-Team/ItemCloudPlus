@@ -201,7 +201,12 @@ class MainClass extends PluginBase implements Listener{
 							$sender->sendMessage("[ItemCloud] §cアカウントを作成してください");
 							break;
 						}
-						   
+						
+						if(!$this->getServer()->getPlayerExact($params[0])->isOnline()){
+							$sender->sendMessage("[ItemCloud] §c{$params[0]}はオフラインです");
+							break;
+						}
+						
 						if(!isset($this->clouds[$params[0]])){
 							$sender->sendMessage("[ItemCloud] §c{$params[0]}さんのアカウントが存在しません");
 							break;
@@ -223,7 +228,7 @@ class MainClass extends PluginBase implements Listener{
 						   
 						$this->clouds[strtolower($params[0])]->addItem($item[0], $item[1], $params[2], true); //追加
 						   
-						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]}を{$params[0]}に与えました");
+						$sender->sendMessage("[ItemCloud] §e{$item[0]}:{$item[1]} {$params[2]}個 を{$params[0]}に与えました");
 						
 						break;
 						
