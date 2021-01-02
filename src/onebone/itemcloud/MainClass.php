@@ -299,6 +299,8 @@ class MainClass extends PluginBase implements Listener{
 								$sender->sendMessage("[ItemCloud] §c既に無効です。");
 						        }else{
 							        $this->breakdate->remove($user_name);
+								$this->breakdate->save();
+							        $this->breakdate->reload();
 								$sender->sendMessage("[ItemCloud] §eブロックを壊しても直接アイテムクラウドに行かなくなりました。");
 						        }
 						}else{
