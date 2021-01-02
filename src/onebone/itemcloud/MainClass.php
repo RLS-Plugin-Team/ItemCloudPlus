@@ -422,7 +422,7 @@ class sendItem extends Task{
 
 	function onRun(int $currentTick){
 		if(!$this->event->isCancelled()){
-			if($this->player->getInventory()->canAddItem($this->item)){
+			if($this->player->getInventory()->canAddItem($this->item) != NULL){
 				$this->player->getInventory()->addItem($this->item);
 			}else{
 				$level = $this->player->getLevel();
