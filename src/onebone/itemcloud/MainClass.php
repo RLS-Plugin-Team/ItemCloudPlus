@@ -410,6 +410,14 @@ class MainClass extends PluginBase implements Listener{
 		$this->save();
 		$this->clouds = [];
 	}
+	
+	public function isDirect($name){
+		if($this->breakdate->exists($name)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
 
 class sendItem extends Task{
